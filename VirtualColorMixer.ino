@@ -49,6 +49,7 @@ void loop() {
   whiteButtonValue = digitalRead(whiteButtonPin);
   blackButtonValue = digitalRead(blackButtonPin);
 
+  // select colour to mix from button press
   if(redButtonValue == HIGH){
     selectedColourOption = RED;
   }
@@ -72,6 +73,7 @@ void loop() {
   motionDetectorValuePrevious = motionDetectorValueCurrent;
   motionDetectorValueCurrent = digitalRead(motionSensorPin);
 
+  // if motion detected mix in paint to the RGB mixture depending on colour choice
   if (motionDetectorValuePrevious == LOW && motionDetectorValueCurrent == HIGH) {   // pin state change: LOW -> HIGH
     switch(selectedColourOption) {
       case RED:
@@ -114,6 +116,7 @@ void loop() {
     }
   }
 
+  // display colour on RGB LED
   analogWrite(redPin, redLightLevel);
   analogWrite(bluePin, blueLightLevel);
   analogWrite(greenPin, greenLightLevel);
